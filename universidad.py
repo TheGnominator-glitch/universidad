@@ -1,10 +1,11 @@
+from dataclasses import dataclass
 import oracledb
 
+@dataclass
 class Estudiante:
-    def __init__(self, codigo, nombre, programa):
-        self.codigo = codigo
-        self.nombre = nombre
-        self.programa = programa
+    codigo: str
+    nombre: str
+    programa: str
 
 class EstudianteRepositorioOracle:
     def __init__(self, config):
@@ -32,6 +33,18 @@ class EstudianteRepositorioOracle:
             return Estudiante(fila[0], fila[1], fila[2])
         return None
 
+    def mostrar_todos(self):
+        sql = "SELECT codigo, nombre, programa FROM estudiantes"
+        conexion = oracledb.connect(**self.config)
+        cursor = conexion.cursor()
+        cursor.execute(sql)
+        filas = cursor.fetchall()
+        cursor.close()
+        conexion.close()
+        print("Students")
+        for fila in filas:
+            print("Code:", fila[0], "Name:", fila[1], "Program:", fila[2])
+
 config = {
     "user": "universidad",
     "password": "pass123",
@@ -39,7 +52,15 @@ config = {
 }
 
 repo = EstudianteRepositorioOracle(config)
-#repo.guardar(Estudiante("2026-001", "Laura Gomez", "Systems Engineering"))
 
+# Insert students
+repo.guardar(Estudiante("2026-001", "Laura Gomez", "Systems Engineering"))
+repo.guardar(Estudiante("2026-002", "Y", "Business"))
+repo.guardar(Estudiante("2026-003", "Z", "Math"))
+
+# Search by code
 estudiante = repo.buscar_por_codigo("2026-001")
-print("Found:", estudiante.nombre, estudiante.programa)
+print("\nFound:", estudiante.nombre, estudiante.programa)
+
+# Show all
+repo.mostrar_todos()
