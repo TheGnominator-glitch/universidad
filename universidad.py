@@ -54,11 +54,11 @@ config = {
 repo = EstudianteRepositorioOracle(config)
 
 # Insert students
-#repo.guardar(Estudiante("2026-001", "Laura Gomez", "Systems Engineering"))
-#repo.guardar(Estudiante("2026-002", "Y", "Business"))
-#repo.guardar(Estudiante("2026-003", "Z", "Math"))
+# repo.guardar(Estudiante("2026-001", "Laura Gomez", "Ingeniería de Sistemas"))
+# repo.guardar(Estudiante("2026-002", "Y", "Class_1"))
+# repo.guardar(Estudiante("2026-003", "Z", "Class_2"))
 
-# Search by code
+# Search one by one
 # estudiante = repo.buscar_por_codigo("2026-001")
 # print("\nFound:", estudiante.nombre, estudiante.programa)
 
