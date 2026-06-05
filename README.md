@@ -20,7 +20,7 @@ Installar el connector en cmd
 `pip install oracledb`
 
 
-## Como preparer el DB:
+## Como preparer el DB
 
 Correr el siguiente codigo en Oracle SQL Developer
 
