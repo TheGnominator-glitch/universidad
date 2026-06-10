@@ -37,20 +37,29 @@ def menu_estudiantes():
                 print("Error:", e)
 
         elif option == "2":
-            identificacion = input("Enter student ID: ")
-            estudiante = gestor_estudiantes.buscar_por_id(identificacion)
-            if estudiante:
-                estudiante.mostrar_info()
-            else:
-                print("Student not found")
+            try:
+                identificacion = input("Enter student ID: ")
+                estudiante = gestor_estudiantes.buscar_por_id(identificacion)
+                if estudiante:
+                    estudiante.mostrar_info()
+                else:
+                    print("Student not found")
+            except Exception as e:
+                print("Error:", e)
 
         elif option == "3":
-            gestor_estudiantes.listar_todos()
+            try:
+                gestor_estudiantes.listar_todos()
+            except Exception as e:
+                print("Error:", e)
 
         elif option == "4":
-            identificacion = input("Enter student ID to delete: ")
-            gestor_estudiantes.eliminar(identificacion)
-            est_repo.eliminar(identificacion)
+            try:
+                identificacion = input("Enter student ID to delete: ")
+                gestor_estudiantes.eliminar(identificacion)
+                est_repo.eliminar(identificacion)
+            except Exception as e:
+                print("Error:", e)
 
         elif option == "5":
             break
@@ -98,11 +107,17 @@ def menu_cursos():
                 print("Error:", e)
 
         elif option == "3":
-            gestor_cursos.listar_cursos()
+            try:
+                gestor_cursos.listar_cursos()
+            except Exception as e:
+                print("Error:", e)
 
         elif option == "4":
-            codigo = input("Enter course code to delete: ")
-            cur_repo.eliminar(codigo)
+            try:
+                codigo = input("Enter course code to delete: ")
+                cur_repo.eliminar(codigo)
+            except Exception as e:
+                print("Error:", e)
 
         elif option == "5":
             break
@@ -119,16 +134,19 @@ def menu_matriculas():
         option = input("Select option: ")
 
         if option == "1":
-            identificacion = input("Student ID: ")
-            codigo_curso = input("Course code: ")
-            estudiante = gestor_estudiantes.buscar_por_id(identificacion)
-            curso = gestor_cursos.buscar_curso(codigo_curso)
-            if estudiante and curso:
-                gestor_cursos.matricular(estudiante, curso)
-                matricula = gestor_cursos.buscar_matricula(identificacion, codigo_curso)
-                mat_repo.guardar(matricula)
-            else:
-                print("Student or course not found")
+            try:
+                identificacion = input("Student ID: ")
+                codigo_curso = input("Course code: ")
+                estudiante = gestor_estudiantes.buscar_por_id(identificacion)
+                curso = gestor_cursos.buscar_curso(codigo_curso)
+                if estudiante and curso:
+                    gestor_cursos.matricular(estudiante, curso)
+                    matricula = gestor_cursos.buscar_matricula(identificacion, codigo_curso)
+                    mat_repo.guardar(matricula)
+                else:
+                    print("Student or course not found")
+            except Exception as e:
+                print("Error:", e)
 
         elif option == "2":
             identificacion = input("Student ID: ")
@@ -163,17 +181,26 @@ def menu_reportes():
         option = input("Select option: ")
 
         if option == "1":
-            estudiantes = est_repo.listar_todos()
-            for e in estudiantes:
-                e.mostrar_info()
-                print("---")
+            try:
+                estudiantes = est_repo.listar_todos()
+                for e in estudiantes:
+                    e.mostrar_info()
+                    print("---")
+            except Exception as e:
+                print("Error:", e)
         elif option == "2":
-            cursos = cur_repo.listar_todos()
-            for c in cursos:
-                c.mostrar_info()
-                print("---")
+            try:
+                cursos = cur_repo.listar_todos()
+                for c in cursos:
+                    c.mostrar_info()
+                    print("---")
+            except Exception as e:
+                print("Error:", e)
         elif option == "3":
-            gestor_cursos.listar_matriculas()
+            try:
+                gestor_cursos.listar_matriculas()
+            except Exception as e:
+                print("Error:", e)
         elif option == "4":
             break
         else:
