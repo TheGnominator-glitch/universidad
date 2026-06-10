@@ -1,9 +1,6 @@
-# Python-Oracle conexion
+# SGA: Sistema de Gestion Academica
 
-Esto es una demostracion de la conexion de Python con el DB de Oracle
-
-# INSTRUCCIONES DE USO
-
+Sistema de gestion academica desarrollado en Python con conexion a Oracle, aplicando POO.
 
 ## Requerimientos
 
@@ -13,35 +10,49 @@ Oracle Database XE (Oracle Express Edition)
 
 oracledb libreria
 
-## Installacion:
+## Instalacion
 
-Installar el connector en cmd
+Instalar las desde cmd:
 
-`pip install oracledb`
+```
+pip install oracledb
+pip install pytest
+pip install pylint
+```
 
+## Como preparar el DB
 
-## Como preparer el DB
+Correr el archivo `sga_universidad.sql` en Oracle SQL Developer. Esto crea todas las tablas necesarias.
 
-Correr el siguiente codigo en Oracle SQL Developer
+Tambien crear el usuario de Oracle:
 
 ```
 CREATE USER universidad IDENTIFIED BY pass123;
 GRANT CONNECT, RESOURCE TO universidad;
 ALTER USER universidad QUOTA UNLIMITED ON USERS;
-
-CREATE TABLE universidad.estudiantes (
-    codigo VARCHAR2(20) PRIMARY KEY,
-    nombre VARCHAR2(120) NOT NULL,
-    programa VARCHAR2(120) NOT NULL
-);
 ```
 
 ## Como correr
 
-1. Modificar la seccion de "config" en el archivo con sus propios credenciales de Oracle (Usuario, clave, etc...)
-2. Correr el archivo desde cmd
+1. Modificar `conexion.py` con sus credenciales de Oracle (Usuario, clave, etc...)
+2. Correr `main.py` desde cmd
 
 ## Que hace?
 
-1. Insertar estudiantes en un DB
-2. Muestra los estudiantes en la tabla
+1. Registrar y gestionar estudiantes
+2. Registrar y gestionar cursos
+3. Matricular estudiantes en cursos
+4. Agregar calificaciones y calcular promedios
+5. Generar reportes desde la base de datos
+
+## Correr las pruebas
+
+```
+pytest pruebas/ -v
+```
+
+## Calidad de codigo
+
+```
+pylint modelos/ servicios
+```
