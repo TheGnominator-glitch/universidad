@@ -222,7 +222,6 @@ while True:
     elif option == "4":
         menu_reportes()
     elif option == "5":
-        print("Exiting system")
         break
     else:
         print("Invalid option")
