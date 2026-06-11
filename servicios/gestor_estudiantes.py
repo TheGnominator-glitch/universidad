@@ -23,7 +23,6 @@ class GestorEstudiantes:
             print("No students registered")
         for e in self.__estudiantes:
             e.mostrar_info()
-            print("---")
 
     def eliminar(self, identificacion):
         for e in self.__estudiantes:
@@ -31,4 +30,3 @@ class GestorEstudiantes:
                 self.__estudiantes.remove(e)
                 print("Student deleted:", identificacion)
                 return
-        print("Student not found")

@@ -25,7 +25,6 @@ class GestorCursos:
             print("No courses registered")
         for c in self.__cursos:
             c.mostrar_info()
-            print("---")
 
     def matricular(self, estudiante, curso):
         for m in self.__matriculas:
@@ -47,4 +46,3 @@ class GestorCursos:
             print("No enrollments registered")
         for m in self.__matriculas:
             m.mostrar_info()
-            print("---")

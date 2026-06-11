@@ -15,9 +15,9 @@ mat_repo = MatriculaRepositorio()
 
 def menu_estudiantes():
     while True:
-        print("\n--- STUDENTS ---")
+        print("\n------Students-----")
         print("1. Register student")
-        print("2. Search student")
+        print("2. Search for student")
         print("3. List all students")
         print("4. Delete student")
         print("5. Back")
@@ -68,7 +68,7 @@ def menu_estudiantes():
 
 def menu_cursos():
     while True:
-        print("\n--- COURSES ---")
+        print("\n----Courses-----")
         print("1. Register course")
         print("2. Assign teacher to course")
         print("3. List all courses")
@@ -126,7 +126,7 @@ def menu_cursos():
 
 def menu_matriculas():
     while True:
-        print("\n--- ENROLLMENTS ---")
+        print("\n----Enrollment-----")
         print("1. Enroll student in course")
         print("2. Add grade")
         print("3. List all enrollments")
@@ -173,7 +173,7 @@ def menu_matriculas():
 
 def menu_reportes():
     while True:
-        print("\n--- REPORTS ---")
+        print("\n----Reports---")
         print("1. List all students")
         print("2. List all courses")
         print("3. List all enrollments")
@@ -185,7 +185,6 @@ def menu_reportes():
                 estudiantes = est_repo.listar_todos()
                 for e in estudiantes:
                     e.mostrar_info()
-                    print("---")
             except Exception as e:
                 print("Error:", e)
         elif option == "2":
@@ -193,7 +192,6 @@ def menu_reportes():
                 cursos = cur_repo.listar_todos()
                 for c in cursos:
                     c.mostrar_info()
-                    print("---")
             except Exception as e:
                 print("Error:", e)
         elif option == "3":
@@ -207,7 +205,7 @@ def menu_reportes():
             print("Invalid option")
 
 while True:
-    print("\n===== SGA - SISTEMA DE GESTION ACADEMICA =====")
+    print("\n------SGA------")
     print("1. Students")
     print("2. Courses")
     print("3. Enrollments")
