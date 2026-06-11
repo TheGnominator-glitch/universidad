@@ -9,7 +9,7 @@ class MatriculaRepositorio:
         conexion.commit()
         cursor.close()
         conexion.close()
-        print("Enrollment saved")
+        print("Matricula guardado")
 
     def listar_todos(self):
         sql = "SELECT * FROM TBL_MATRICULAS"
@@ -29,4 +29,4 @@ class MatriculaRepositorio:
         conexion.commit()
         cursor.close()
         conexion.close()
-        print("Enrollment deleted:", matricula_id)
+        print("Matricula eliminado", matricula_id)

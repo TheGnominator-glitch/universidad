@@ -7,10 +7,10 @@ class GestorEstudiantes:
     def registrar(self, estudiante):
         for e in self.__estudiantes:
             if e.get_identificacion() == estudiante.get_identificacion():
-                print("Student already exists")
+                print("Estudiante ya existe")
                 return
         self.__estudiantes.append(estudiante)
-        print("Student registered:", estudiante.get_nombre())
+        print("Estudiante registrado:", estudiante.get_nombre())
 
     def buscar_por_id(self, identificacion):
         for e in self.__estudiantes:
@@ -20,7 +20,7 @@ class GestorEstudiantes:
 
     def listar_todos(self):
         if len(self.__estudiantes) == 0:
-            print("No students registered")
+            print("No hay estudiantes registrados")
         for e in self.__estudiantes:
             e.mostrar_info()
 
@@ -28,5 +28,5 @@ class GestorEstudiantes:
         for e in self.__estudiantes:
             if e.get_identificacion() == identificacion:
                 self.__estudiantes.remove(e)
-                print("Student deleted:", identificacion)
+                print("Estudiante eliminado:", identificacion)
                 return

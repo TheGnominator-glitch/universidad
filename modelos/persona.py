@@ -14,7 +14,7 @@ class Persona(ABC):
 
     def set_nombre(self, nombre):
         if not nombre:
-            raise ValueError("Name cannot be empty")
+            raise ValueError("Nombre no puede estar vacio")
         self.__nombre = nombre
 
     def get_email(self):
@@ -22,7 +22,7 @@ class Persona(ABC):
 
     def set_email(self, email):
         if not email:
-            raise ValueError("Email cannot be empty")
+            raise ValueError("Email no puede estar vacio")
         self.__email = email
 
     @abstractmethod

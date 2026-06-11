@@ -10,7 +10,7 @@ class EstudianteRepositorio:
         conexion.commit()
         cursor.close()
         conexion.close()
-        print("Student saved:", estudiante.get_nombre())
+        print("Estudiante guardado:", estudiante.get_nombre())
 
     def buscar_por_id(self, identificacion):
         sql = "SELECT * FROM TBL_ESTUDIANTES WHERE id = :1"
@@ -45,4 +45,4 @@ class EstudianteRepositorio:
         conexion.commit()
         cursor.close()
         conexion.close()
-        print("Student deleted:", identificacion)
+        print("Estudiante eliminado:", identificacion)

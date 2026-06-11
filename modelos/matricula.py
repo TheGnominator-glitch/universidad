@@ -27,8 +27,8 @@ class Matricula:
         return total / len(self.__calificaciones)
 
     def mostrar_info(self):
-        print("Student:", self.__estudiante.get_nombre())
-        print("Course:", self.__curso.get_nombre())
-        print("Average:", self.promedio())
+        print("Estudiante:", self.__estudiante.get_nombre())
+        print("Curso:", self.__curso.get_nombre())
+        print("Promedio:", self.promedio())
         for calificacion in self.__calificaciones:
             calificacion.mostrar_info()

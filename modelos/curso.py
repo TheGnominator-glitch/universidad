@@ -14,7 +14,7 @@ class Curso:
 
     def set_nombre(self, nombre):
         if not nombre:
-            raise ValueError("Course name cannot be empty")
+            raise ValueError("Nombre del curso no puede estar vacio")
         self.__nombre = nombre
 
     def get_creditos(self):
@@ -30,11 +30,11 @@ class Curso:
         self.__docente = docente
 
     def mostrar_info(self):
-        print("Course:", self.__nombre)
-        print("Code:", self.__codigo)
-        print("Credits:", self.__creditos)
-        print("Max capacity:", self.__cupo_maximo)
+        print("Curso:", self.__nombre)
+        print("Codigo:", self.__codigo)
+        print("Creditos:", self.__creditos)
+        print("Cupo maximo:", self.__cupo_maximo)
         if self.__docente:
-            print("Teacher:", self.__docente.get_nombre())
+            print("Docente:", self.__docente.get_nombre())
         else:
-            print("Teacher: not assigned")
+            print("Docente: No asignado")

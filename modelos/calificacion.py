@@ -12,9 +12,9 @@ class Calificacion:
 
     def set_nota(self, nota):
         if nota < 0.0 or nota > 5.0:
-            raise ValueError("Grade must be between 0.0 and 5.0")
+            raise ValueError("Nota debe ser entre 0.0 y 5.0")
         self.__nota = nota
 
     def mostrar_info(self):
-        print("Activity:", self.__actividad)
-        print("Grade:", self.__nota)
+        print("Actividad:", self.__actividad)
+        print("Nota:", self.__nota)

@@ -9,8 +9,8 @@ from modelos.matricula import Matricula
 from modelos.curso import Curso
 
 def test_estudiante_valido():
-    est = Estudiante("EST001", "Ana Ruiz", "ana@correo.com", "2026-001", "Systems Engineering")
-    assert est.get_nombre() == "Ana Ruiz"
+    est = Estudiante("EST001", "X", "X@email.com", "2026-001", "Systems")
+    assert est.get_nombre() == "X"
 
 def test_calificacion_invalida():
     with pytest.raises(ValueError):
@@ -21,14 +21,14 @@ def test_calificacion_valida():
     assert cal.get_nota() == 4.0
 
 def test_promedio_correcto():
-    est = Estudiante("EST001", "Ana Ruiz", "ana@correo.com", "2026-001", "Systems Engineering")
-    cur = Curso("CS101", "Programming", 3, 30)
+    est = Estudiante("EST001", "X", "X@email.com", "2026-001", "Systems")
+    cur = Curso("C001", "P", 3, 30)
     mat = Matricula(est, cur)
     mat.agregar_calificacion("Parcial", 4.0)
     mat.agregar_calificacion("Final", 5.0)
     assert mat.promedio() == 4.5
 
 def test_mostrar_info_polimorfismo():
-    est = Estudiante("EST001", "Ana Ruiz", "ana@correo.com", "2026-001", "Systems Engineering")
-    doc = Docente("DOC001", "Dr. Lopez", "lopez@correo.com", "POO", "PhD")
+    est = Estudiante("EST001", "X", "X@email.com", "2026-001", "Systems")
+    doc = Docente("DOC001", "Y", "Y@email.com", "POO", "Phd")
     assert est.get_codigo() != doc.get_especialidad()

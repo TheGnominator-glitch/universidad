@@ -15,7 +15,7 @@ class Estudiante(Persona):
 
     def set_programa(self, programa):
         if not programa:
-            raise ValueError("Program cannot be empty")
+            raise ValueError("Programa no puede estar vacio")
         self.__programa = programa
 
     def get_promedio(self):
@@ -23,13 +23,13 @@ class Estudiante(Persona):
 
     def set_promedio(self, promedio):
         if promedio < 0.0 or promedio > 5.0:
-            raise ValueError("Average must be between 0.0 and 5.0")
+            raise ValueError("Promedio tiene que estar entre 0.0 y 5.0")
         self.__promedio = promedio
 
     def mostrar_info(self):
-        print("Student:", self.get_nombre())
+        print("Estudiante:", self.get_nombre())
         print("ID:", self.get_identificacion())
         print("Email:", self.get_email())
-        print("Code:", self.__codigo)
-        print("Program:", self.__programa)
-        print("Average:", self.__promedio)
+        print("Codigo:", self.__codigo)
+        print("Programa:", self.__programa)
+        print("Promedio:", self.__promedio)

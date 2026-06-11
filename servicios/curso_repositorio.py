@@ -11,7 +11,7 @@ class CursoRepositorio:
         conexion.commit()
         cursor.close()
         conexion.close()
-        print("Course saved:", curso.get_nombre())
+        print("Curso guardado:", curso.get_nombre())
 
     def buscar_por_codigo(self, codigo):
         sql = "SELECT * FROM TBL_CURSOS WHERE codigo = :1"
@@ -46,4 +46,4 @@ class CursoRepositorio:
         conexion.commit()
         cursor.close()
         conexion.close()
-        print("Course deleted:", codigo)
+        print("Curso eliminado:", codigo)

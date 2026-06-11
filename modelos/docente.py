@@ -11,7 +11,7 @@ class Docente(Persona):
 
     def set_especialidad(self, especialidad):
         if not especialidad:
-            raise ValueError("Specialty cannot be empty")
+            raise ValueError("Especialidad no puede estar vacio")
         self.__especialidad = especialidad
 
     def get_titulo(self):
@@ -19,12 +19,12 @@ class Docente(Persona):
 
     def set_titulo(self, titulo):
         if not titulo:
-            raise ValueError("Title cannot be empty")
+            raise ValueError("Titulo no puede vacio")
         self.__titulo = titulo
 
     def mostrar_info(self):
-        print("Teacher:", self.get_nombre())
+        print("Docente:", self.get_nombre())
         print("ID:", self.get_identificacion())
         print("Email:", self.get_email())
-        print("Specialty:", self.__especialidad)
-        print("Title:", self.__titulo)
+        print("Especialidad:", self.__especialidad)
+        print("Titulo:", self.__titulo)

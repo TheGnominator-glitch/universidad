@@ -15,21 +15,21 @@ mat_repo = MatriculaRepositorio()
 
 def menu_estudiantes():
     while True:
-        print("\n------Students-----")
-        print("1. Register student")
-        print("2. Search for student")
-        print("3. List all students")
-        print("4. Delete student")
-        print("5. Back")
-        option = input("Select option: ")
+        print("\n------Estudiantes-----")
+        print("1. Registrar estudiante")
+        print("2. Buscar estudiante")
+        print("3. Listar estudiantes")
+        print("4. Eliminar estudiante")
+        print("5. Atras")
+        option = input("Elegir opcion: ")
 
         if option == "1":
             try:
                 identificacion = input("ID: ")
-                nombre = input("Name: ")
+                nombre = input("Nombre: ")
                 email = input("Email: ")
-                codigo = input("Code: ")
-                programa = input("Program: ")
+                codigo = input("Codigo: ")
+                programa = input("Programa: ")
                 estudiante = Estudiante(identificacion, nombre, email, codigo, programa)
                 gestor_estudiantes.registrar(estudiante)
                 est_repo.guardar(estudiante)
@@ -38,12 +38,12 @@ def menu_estudiantes():
 
         elif option == "2":
             try:
-                identificacion = input("Enter student ID: ")
+                identificacion = input("Ingresar ID del estudiante: ")
                 estudiante = gestor_estudiantes.buscar_por_id(identificacion)
                 if estudiante:
                     estudiante.mostrar_info()
                 else:
-                    print("Student not found")
+                    print("Estudiante no se encuentra")
             except Exception as e:
                 print("Error:", e)
 
@@ -55,7 +55,7 @@ def menu_estudiantes():
 
         elif option == "4":
             try:
-                identificacion = input("Enter student ID to delete: ")
+                identificacion = input("Ingresar ID del estudiante para borrar: ")
                 gestor_estudiantes.eliminar(identificacion)
                 est_repo.eliminar(identificacion)
             except Exception as e:
@@ -64,24 +64,24 @@ def menu_estudiantes():
         elif option == "5":
             break
         else:
-            print("Invalid option")
+            print("Opcion no valida")
 
 def menu_cursos():
     while True:
-        print("\n----Courses-----")
-        print("1. Register course")
-        print("2. Assign teacher to course")
-        print("3. List all courses")
-        print("4. Delete course")
-        print("5. Back")
-        option = input("Select option: ")
+        print("\n----Cursos-----")
+        print("1. Registrar curso")
+        print("2. Asignar docente a curso")
+        print("3. Listar cursos")
+        print("4. Eliminar curso")
+        print("5. Atras")
+        option = input("Elegir opcion: ")
 
         if option == "1":
             try:
-                codigo = input("Code: ")
-                nombre = input("Name: ")
-                creditos = int(input("Credits: "))
-                cupo = int(input("Max capacity: "))
+                codigo = input("Codigo: ")
+                nombre = input("Nombre: ")
+                creditos = int(input("Creditos: "))
+                cupo = int(input("Cupo maximo: "))
                 curso = Curso(codigo, nombre, creditos, cupo)
                 gestor_cursos.registrar_curso(curso)
                 cur_repo.guardar(curso)
@@ -90,19 +90,19 @@ def menu_cursos():
 
         elif option == "2":
             try:
-                codigo_curso = input("Course code: ")
+                codigo_curso = input("Codigo del curso: ")
                 curso = gestor_cursos.buscar_curso(codigo_curso)
                 if curso:
-                    identificacion = input("Teacher ID: ")
-                    nombre = input("Teacher name: ")
-                    email = input("Teacher email: ")
-                    especialidad = input("Specialty: ")
-                    titulo = input("Title: ")
+                    identificacion = input("ID: ")
+                    nombre = input("Nombre: ")
+                    email = input("Email: ")
+                    especialidad = input("Especialidad: ")
+                    titulo = input("Titulo: ")
                     docente = Docente(identificacion, nombre, email, especialidad, titulo)
                     curso.asignar_docente(docente)
-                    print("Teacher assigned successfully")
+                    print("Docente asignado")
                 else:
-                    print("Course not found")
+                    print("Curso no se encuentra")
             except ValueError as e:
                 print("Error:", e)
 
@@ -114,7 +114,7 @@ def menu_cursos():
 
         elif option == "4":
             try:
-                codigo = input("Enter course code to delete: ")
+                codigo = input("Ingresar codigo para eliminar curso: ")
                 cur_repo.eliminar(codigo)
             except Exception as e:
                 print("Error:", e)
@@ -122,21 +122,21 @@ def menu_cursos():
         elif option == "5":
             break
         else:
-            print("Invalid option")
+            print("Opcion no valida")
 
 def menu_matriculas():
     while True:
-        print("\n----Enrollment-----")
-        print("1. Enroll student in course")
-        print("2. Add grade")
-        print("3. List all enrollments")
-        print("4. Back")
-        option = input("Select option: ")
+        print("\n----Matriculas-----")
+        print("1. Matricular estudiante en curso")
+        print("2. Agregar calificacion")
+        print("3. Listar matriculas")
+        print("4. Atras")
+        option = input("Elegir opcion: ")
 
         if option == "1":
             try:
-                identificacion = input("Student ID: ")
-                codigo_curso = input("Course code: ")
+                identificacion = input("ID del estudiante: ")
+                codigo_curso = input("Codigo del curso: ")
                 estudiante = gestor_estudiantes.buscar_por_id(identificacion)
                 curso = gestor_cursos.buscar_curso(codigo_curso)
                 if estudiante and curso:
@@ -144,24 +144,24 @@ def menu_matriculas():
                     matricula = gestor_cursos.buscar_matricula(identificacion, codigo_curso)
                     mat_repo.guardar(matricula)
                 else:
-                    print("Student or course not found")
+                    print("Estudiante o curso no encontrado")
             except Exception as e:
                 print("Error:", e)
 
         elif option == "2":
-            identificacion = input("Student ID: ")
-            codigo_curso = input("Course code: ")
+            identificacion = input("ID del estudiante: ")
+            codigo_curso = input("Codigo del curso: ")
             matricula = gestor_cursos.buscar_matricula(identificacion, codigo_curso)
             if matricula:
                 try:
-                    actividad = input("Activity name: ")
-                    nota = float(input("Grade: "))
+                    actividad = input("Nombre de la actividad: ")
+                    nota = float(input("Calificacion: "))
                     matricula.agregar_calificacion(actividad, nota)
-                    print("Grade added, average:", matricula.promedio())
+                    print("Calificacion agregada, promedio:", matricula.promedio())
                 except ValueError as e:
                     print("Error:", e)
             else:
-                print("Enrollment not found")
+                print("Matricula no encontrada")
 
         elif option == "3":
             gestor_cursos.listar_matriculas()
@@ -169,16 +169,16 @@ def menu_matriculas():
         elif option == "4":
             break
         else:
-            print("Invalid option")
+            print("Opcion no valida")
 
 def menu_reportes():
     while True:
-        print("\n----Reports---")
-        print("1. List all students")
-        print("2. List all courses")
-        print("3. List all enrollments")
-        print("4. Back")
-        option = input("Select option: ")
+        print("\n----Reportes---")
+        print("1. Listar estudiantes")
+        print("2. Listar cursos")
+        print("3. Listar matriculas")
+        print("4. Atras")
+        option = input("Elegir opcion: ")
 
         if option == "1":
             try:
@@ -202,16 +202,16 @@ def menu_reportes():
         elif option == "4":
             break
         else:
-            print("Invalid option")
+            print("Opcion no valida")
 
 while True:
     print("\n------SGA------")
-    print("1. Students")
-    print("2. Courses")
-    print("3. Enrollments")
-    print("4. Reports")
-    print("5. Exit")
-    option = input("Select option: ")
+    print("1. Estudiantes")
+    print("2. Cursos")
+    print("3. Matriculas")
+    print("4. Reportes")
+    print("5. Salir")
+    option = input("Elegir opcion: ")
 
     if option == "1":
         menu_estudiantes()
@@ -224,4 +224,4 @@ while True:
     elif option == "5":
         break
     else:
-        print("Invalid option")
+        print("Opcion no valida")
