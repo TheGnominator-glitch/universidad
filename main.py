@@ -110,9 +110,11 @@ def menu_cursos():
 
         elif option == "3":
             try:
-                gestor_cursos.listar_cursos()
+                cursos = cur_repo.listar_todos()
+                for c in cursos:
+                    c.mostrar_info()
             except Exception as e:
-                print("Error:", e)
+                    print("Error:", e)
 
         elif option == "4":
             try:
