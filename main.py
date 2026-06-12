@@ -65,7 +65,7 @@ def menu_estudiantes():
             break
         else:
             print("Opcion no valida")
-
+#Controla cursos
 def menu_cursos():
     while True:
         print("\n----Cursos-----")
