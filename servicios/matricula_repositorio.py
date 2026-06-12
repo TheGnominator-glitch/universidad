@@ -11,6 +11,20 @@ class MatriculaRepositorio:
         conexion.close()
         print("Matricula guardado")
 
+    def guardar_calificacion(self, estudiante_id, curso_codigo, actividad, nota):
+        sql_find = "SELECT id FROM TBL_MATRICULAS WHERE estudiante_id = :1 AND curso_codigo = :2"
+        sql_insert = "INSERT INTO TBL_CALIFICACIONES (matricula_id, actividad, nota) VALUES (:1, :2, :3)"
+        conexion = obtener_conexion()
+        cursor = conexion.cursor()
+        cursor.execute(sql_find, (estudiante_id, curso_codigo))
+        fila = cursor.fetchone()
+        if fila:
+            cursor.execute(sql_insert, (fila[0], actividad, nota))
+            conexion.commit()
+            print("Calificacion guardada")
+        cursor.close()
+        conexion.close()
+
     def listar_todos(self):
         sql = "SELECT * FROM TBL_MATRICULAS"
         conexion = obtener_conexion()

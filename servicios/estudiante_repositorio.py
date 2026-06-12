@@ -23,6 +23,20 @@ class EstudianteRepositorio:
         if fila:
             return Estudiante(fila[0], fila[1], fila[2], fila[3], fila[4])
         return None
+    
+    def obtener_promedio(self, estudiante_id):
+        sql = """SELECT AVG(c.nota) FROM TBL_CALIFICACIONES c 
+             JOIN TBL_MATRICULAS m ON c.matricula_id = m.id 
+             WHERE m.estudiante_id = :1"""
+        conexion = obtener_conexion()
+        cursor = conexion.cursor()
+        cursor.execute(sql, (estudiante_id,))
+        fila = cursor.fetchone()
+        cursor.close()
+        conexion.close()
+        if fila[0]:
+            return round(fila[0], 2)
+        return 0.0
 
     def listar_todos(self):
         sql = "SELECT * FROM TBL_ESTUDIANTES ORDER BY nombre"

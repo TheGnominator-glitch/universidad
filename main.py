@@ -91,7 +91,7 @@ def menu_cursos():
         elif option == "2":
             try:
                 codigo_curso = input("Codigo del curso: ")
-                curso = gestor_cursos.buscar_curso(codigo_curso)
+                curso = cur_repo.buscar_por_codigo(codigo_curso)
                 if curso:
                     identificacion = input("ID: ")
                     nombre = input("Nombre: ")
@@ -99,7 +99,9 @@ def menu_cursos():
                     especialidad = input("Especialidad: ")
                     titulo = input("Titulo: ")
                     docente = Docente(identificacion, nombre, email, especialidad, titulo)
+                    cur_repo.guardar_docente(docente)
                     curso.asignar_docente(docente)
+                    cur_repo.actualizar_docente(curso)
                     print("Docente asignado")
                 else:
                     print("Curso no se encuentra")
@@ -137,8 +139,8 @@ def menu_matriculas():
             try:
                 identificacion = input("ID del estudiante: ")
                 codigo_curso = input("Codigo del curso: ")
-                estudiante = gestor_estudiantes.buscar_por_id(identificacion)
-                curso = gestor_cursos.buscar_curso(codigo_curso)
+                estudiante = est_repo.buscar_por_id(identificacion)
+                curso = cur_repo.buscar_por_codigo(codigo_curso)
                 if estudiante and curso:
                     gestor_cursos.matricular(estudiante, curso)
                     matricula = gestor_cursos.buscar_matricula(identificacion, codigo_curso)
@@ -146,7 +148,8 @@ def menu_matriculas():
                 else:
                     print("Estudiante o curso no encontrado")
             except Exception as e:
-                print("Error:", e)
+                import traceback
+                traceback.print_exc()
 
         elif option == "2":
             identificacion = input("ID del estudiante: ")
@@ -157,6 +160,7 @@ def menu_matriculas():
                     actividad = input("Nombre de la actividad: ")
                     nota = float(input("Calificacion: "))
                     matricula.agregar_calificacion(actividad, nota)
+                    mat_repo.guardar_calificacion(identificacion, codigo_curso, actividad, nota)
                     print("Calificacion agregada, promedio:", matricula.promedio())
                 except ValueError as e:
                     print("Error:", e)
@@ -184,6 +188,8 @@ def menu_reportes():
             try:
                 estudiantes = est_repo.listar_todos()
                 for e in estudiantes:
+                    promedio = est_repo.obtener_promedio(e.get_identificacion())
+                    e.set_promedio(promedio)
                     e.mostrar_info()
             except Exception as e:
                 print("Error:", e)
